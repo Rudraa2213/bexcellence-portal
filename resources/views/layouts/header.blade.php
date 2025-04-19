@@ -44,46 +44,7 @@
     <div id="global-loader">
         <img src="{{ asset('assets/img/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
-    {{-- Sidebar --}}
-    <aside class="app-sidebar sidebar-scroll ps ps--active-y">
-        <div class="main-sidebar-header active">
-            <a class="desktop-logo logo-light active" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/brand/logo.png') }}" class="main-logo" alt="logo">
-            </a>
-            <a class="logo-icon mobile-logo icon-light active" href="{{ url('/') }}">
-                <img src="{{ asset('assets/img/brand/favicon.png') }}" class="logo-icon" alt="logo">
-            </a>
-        </div>
 
-        <div class="main-sidemenu is-expanded">
-            <div class="app-sidebar__user clearfix active">
-                <div class="dropdown user-pro-body">
-                    <div>
-                        <img alt="user-img" class="avatar avatar-xl brround"
-                            src="{{ asset('assets/img/faces/6.jpg') }}">
-                        <span class="avatar-status profile-status bg-green"></span>
-                    </div>
-                    <div class="user-info">
-                        <h4 class="font-weight-semibold mt-3 mb-0">Rahul Rathore</h4>
-                        <span class="mb-0 text-muted">Sr. Full Stack Developer</span>
-                    </div>
-                </div>
-            </div>
-            <ul class="side-menu open">
-                <li class="side-item side-item-category">BEWARE Panel</li>
-                <li class="slide"><a class="side-menu__item" href="{{ url('13sqft-dashboard') }}"><i
-                            class="bx bxs-dashboard tx-20 mr-3"></i>Dashboard</a></li>
-                <li class="slide"><a class="side-menu__item" href="{{ url('13sqft-mdc') }}"><i
-                            class="bx bx-file-blank tx-20 mr-3"></i>MDC</a></li>
-                <li class="slide"><a class="side-menu__item" href="{{ url('13sqft-wcc') }}"><i
-                            class="bx bx-file-find tx-20 mr-3"></i>WCC</a></li>
-                <li class="slide"><a class="side-menu__item" href="{{ url('13sqft-po') }}"><i
-                            class="bx bx-file tx-20 mr-3"></i>PO</a></li>
-                <li class="slide"><a class="side-menu__item" href="{{ url('13sqft-delivery-challan') }}"><i
-                            class="bx bx-file-blank tx-20 mr-3"></i>Delivery Challan</a></li>
-            </ul>
-        </div>
-    </aside>
 
     {{-- Main Content --}}
     <div class="main-content">
@@ -113,7 +74,7 @@
                 <div class="main-header-right">
                     <div class="panel-switcher">
                         <a href="{{ url('dashboard') }}">B-EXCELLENCE</a>
-                        <a href="{{ url('13sqft-dashboard') }}" class="active">13SQFT</a>
+                        <a href="{{ url('13sqft/13sqft-dashboard') }}" class="active">13SQFT</a>
                         <a href="{{ url('beware-dashboard') }}">BEWARE</a>
                     </div>
 

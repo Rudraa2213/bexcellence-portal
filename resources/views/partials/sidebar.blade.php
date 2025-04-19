@@ -23,31 +23,31 @@
         <ul class="side-menu open">
             <li class="side-item side-item-category">BEWARE Panel</li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('13sqft-dashboard') }}">
+                <a class="side-menu__item" href="{{ url('13sqft/13sqft-dashboard') }}">
                     <i class="bx bxs-dashboard tx-20 mr-3"></i>
                     <span class="side-menu__label">Dashboard</span>
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('13sqft-mdc') }}">
+                <a class="side-menu__item" href="{{ url('13sqft/13sqft-mdc') }}">
                     <i class="bx bx-file-blank tx-20 mr-3"></i>
                     <span class="side-menu__label">MDC</span>
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('13sqft-wcc') }}">
+                <a class="side-menu__item" href="{{ url('13sqft/13sqft-wcc') }}">
                     <i class="bx bx-file-find tx-20 mr-3"></i>
                     <span class="side-menu__label">WCC</span>
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('13sqft-po') }}">
+                <a class="side-menu__item" href="{{ url('13sqft/13sqft-po') }}">
                     <i class="bx bx-file tx-20 mr-3"></i>
                     <span class="side-menu__label">PO</span>
                 </a>
             </li>
             <li class="slide">
-                <a class="side-menu__item" href="{{ url('13sqft-delivery-challan') }}">
+                <a class="side-menu__item" href="{{ url('13sqft/13sqft-delivery-challan') }}">
                     <i class="bx bx-file-blank tx-20 mr-3"></i>
                     <span class="side-menu__label">Delivery Challan</span>
                 </a>
