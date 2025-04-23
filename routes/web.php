@@ -11,9 +11,9 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/13sqft/13sqft-dashboard', function () {
-    return view('13sqft-dashboard');
-});
+use App\Http\Controllers\DashboardController;
+
+Route::get('/13sqft/13sqft-dashboard', [DashboardController::class, 'index'])->name('13sqft-dashboard');
 
 Route::get('/13sqft/13sqft-mdc', function () {
     return view('13sqft-mdc');
