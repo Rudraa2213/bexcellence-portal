@@ -8957,7 +8957,7 @@ textarea.custom-file-input.parsley-error:focus~.custom-file-label {
 }
 
 .page-item+.page-item {
-    margin-left: 1px;
+    margin-left: 5px;
 }
 
 .page-item.active .page-link {

@@ -11,16 +11,18 @@
             <div class="list-group list-group-flush">
                 <div class="list-group-item d-flex align-items-center">
                     <div class="mr-3">
-                        <span class="avatar avatar-lg brround cover-image" data-image-src="{{ asset('assets/img/faces/12.jpg') }}"></span>
+                        <span class="avatar avatar-lg brround cover-image"
+                            data-image-src="{{ asset('assets/img/faces/12.jpg') }}"></span>
                     </div>
                     <div>
-                        <strong>Madeleine</strong> created a new <strong>PO</strong> 
+                        <strong>Madeleine</strong> created a new <strong>PO</strong>
                         <div class="small text-muted">3 hours ago</div>
                     </div>
                 </div>
                 <div class="list-group-item d-flex align-items-center">
                     <div class="mr-3">
-                        <span class="avatar avatar-lg brround cover-image" data-image-src="{{ asset('assets/img/faces/1.jpg') }}"></span>
+                        <span class="avatar avatar-lg brround cover-image"
+                            data-image-src="{{ asset('assets/img/faces/1.jpg') }}"></span>
                     </div>
                     <div>
                         <strong>Anthony</strong> created a new <strong>Sales PO</strong>
@@ -29,7 +31,8 @@
                 </div>
                 <div class="list-group-item d-flex align-items-center">
                     <div class="mr-3">
-                        <span class="avatar avatar-lg brround cover-image" data-image-src="{{ asset('assets/img/faces/2.jpg') }}"></span>
+                        <span class="avatar avatar-lg brround cover-image"
+                            data-image-src="{{ asset('assets/img/faces/2.jpg') }}"></span>
                     </div>
                     <div>
                         <strong>Olivia</strong> uploaded a new <strong>Delivery Challan</strong>
@@ -85,5 +88,7 @@
 <script src="{{ asset('assets/js/sticky.js') }}"></script>
 <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/datatables/dataTables.min.js') }}"></script>
 </body>
+
 </html>

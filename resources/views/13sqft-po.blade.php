@@ -31,29 +31,33 @@
                             </div>
                         </div>
 
-                        <div class="row justify-content-between mt-4">
-                            <div class="col-lg-3">
-                                <div class="d-flex align-items-center">
-                                    <span>Show</span>
-                                    <select class="form-control mx-2 wd-100">
-                                        <option value="10"> 10 </option>
-                                        <option value="20"> 20 </option>
-                                        <option value="50"> 50 </option>
-                                        <option value="100"> 100 </option>
-                                        <option value="All"> All </option>
-                                    </select>
-                                    <span>Entries</span>
+                        <form method="GET" action="{{ url()->current() }}" id="filterForm">
+                            <div class="row justify-content-between mt-4">
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <span>Show</span>
+                                        <select name="limit" class="form-control mx-2 wd-100"
+                                            onchange="document.getElementById('filterForm').submit()">
+                                            @foreach([10, 25, 50, 100, 'All'] as $size)
+                                                <option value="{{ $size }}" {{ request('limit', 10) == $size ? 'selected' : '' }}>
+                                                    {{ $size }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-md-6"></div>
-                                    <div class="col-md-6">
-                                        <input type="search" class="form-control" placeholder="Search here">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                        <div class="col-6">
+                                            <input name="search" id="searchInput" type="search" class="form-control"
+                                                placeholder="Search here" value="{{ request('search') }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
                     <div class="card-body">
@@ -72,104 +76,65 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- Sample rows, replace with @foreach loop --}}
-                                    <tr>
-                                        <td align="center">1.</td>
-                                        <td>04-Dec-24</td>
-                                        <td>13SQFT-PO-000192</td>
-                                        <td>Bandhu Prasad</td>
-                                        <td>Gumla, Jharkhand</td>
-                                        <td>Ghaghra, Yashoda Niwas Pakartoli, Kotamati Road Ghaghra: - 835208</td>
-                                        <td>16284</td>
-                                        <td>
-                                            <div class="dropcenter">
-                                                <button class="btn btn-sm py-0" data-toggle="dropdown" type="button">
-                                                    <i class="bx bx-dots-vertical bx-xs"></i>
-                                                </button>
-                                                <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="{{ url('13sqft/13sqft-po-pdf') }}">View PO</a>
-                                                    <a class="dropdown-item" href="#">Edit</a>
+                                    @forelse($totalPO as $index => $po)
+                                        <tr>
+                                            <td align="center">{{ $totalPO->firstItem() + $index }}.</td>
+                                            <td>{{ date('d-M-y', strtotime($po->po_date)) }}</td>
+                                            <td>{{ $po->po_id ?? 'NA' }}</td>
+                                            <td>{{ $po->client_name ?? 'NA' }}</td>
+                                            <td>{{ $po->project_location ?? 'NA' }}</td>
+                                            <td>{{ $po->material_delivery_address ?? 'NA' }}</td>
+                                            <td>
+                                                {{ $po->total_value }}
+                                            </td>
+
+                                            <td>
+                                                <div class="dropcenter">
+                                                    <button class="btn btn-sm py-0" data-toggle="dropdown" type="button">
+                                                        <i class="bx bx-dots-vertical bx-xs"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu tx-13">
+                                                        <a class="dropdown-item"
+                                                            href="{{ url('13sqft/13sqft-po-pdf?id=' . $po->posqftdata_id) }}">View
+                                                            PO</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ url('13sqft/edit?id=' . $po->posqftdata_id) }}">Edit</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td align="center" scope="row">3.</td>
-                                    <td>16-Oct-24</td>
-                                    <td>13SQFT-PO-000190</td>
-                                    <td>Shivam Pandey</td>
-                                    <td>Bhavnagar 364002 (Gujarat)</td>
-                                    <td>C-103, B/h. Lakhubhai Hall, kaliyabid Bhavnagar 364002 ( Gujarat )</td>
-                                    <td>208624</td>
-                                    <td>
-                                        <div class="dropcenter">
-                                            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm py-0" data-toggle="dropdown" id="dropdownMenuButon" type="button">
-                                                <i class="bx bx-dots-vertical bx-xs"></i>
-                                            </button>
-                                            <div class="dropdown-menu tx-13">
-                                                <a class="dropdown-item" href="13sqft/13sqft-po-pdf.php">View MDC</a>
-                                                <a class="dropdown-item" href="javascript:void0">Edit</a>
-                                                <a class="dropdown-item swal-parameter" href="javascript:void0">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center" scope="row">4.</td>
-                                    <td>03-Oct-24</td>
-                                    <td>13SQFT-PO-000189</td>
-                                    <td>Kavita Bhatiya</td>
-                                    <td>Hyderabad Telangana, India</td>
-                                    <td>Purva Soukhyam Perumanttunallur, Chennai, Tamil Nadu 603202</td>
-                                    <td>430000</td>
-                                    <td>
-                                        <div class="dropcenter">
-                                            <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm py-0" data-toggle="dropdown" id="dropdownMenuButon" type="button">
-                                                <i class="bx bx-dots-vertical bx-xs"></i>
-                                            </button>
-                                            <div class="dropdown-menu tx-13">
-                                                <a class="dropdown-item" href="13sqft/13sqft-po-pdf.php">View MDC</a>
-                                                <a class="dropdown-item" href="javascript:void0">Edit</a>
-                                                <a class="dropdown-item swal-parameter" href="javascript:void0">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No data available</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-md-5">
-                                <div class="dataTables_info my-3">Showing 1 to 5 of 5 entries</div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+                            <div class="mb-2">
+                                Showing {{ $totalPO->firstItem() }} to {{ $totalPO->lastItem() }} of
+                                {{ $totalPO->total() }} entries
                             </div>
-                            <div class="col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination justify-content-end">
-                                        <li class="paginate_button page-item previous disabled">
-                                            <a href="#" class="page-link">Previous</a>
-                                        </li>
-                                        <li class="paginate_button page-item active">
-                                            <a href="#" class="page-link">1</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" class="page-link">2</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" class="page-link">3</a>
-                                        </li>
-                                        <li class="paginate_button page-item">
-                                            <a href="#" class="page-link">4</a>
-                                        </li>
-                                        <li class="paginate_button page-item next">
-                                            <a href="#" class="page-link">Next</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div>
+                                <span>{{ $totalPO->links('pagination::bootstrap-4') }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            const searchInput = document.getElementById('searchInput');
+            let typingTimer;
+            const delay = 800; // ms
+
+            searchInput.addEventListener('input', () => {
+                clearTimeout(typingTimer);
+                typingTimer = setTimeout(() => {
+                    document.getElementById('filterForm').submit();
+                }, delay);
+            });
+        </script>
 @endsection

@@ -29,29 +29,33 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="row justify-content-between mt-4">
-                            <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-3 col-sm-4 col-12">
-                                <div class="d-flex align-items-center">
-                                    <span>Show</span>
-                                    <select class="form-control mx-2 wd-100">
-                                        <option value="10">10</option>
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                        <option value="All">All</option>
-                                    </select>
-                                    <span>Entries</span>
+                        <form method="GET" action="{{ url()->current() }}" id="filterForm">
+                            <div class="row justify-content-between mt-4">
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <span>Show</span>
+                                        <select name="limit" class="form-control mx-2 wd-100"
+                                            onchange="document.getElementById('filterForm').submit()">
+                                            @foreach([10, 25, 50, 100, 'All'] as $size)
+                                                <option value="{{ $size }}" {{ request('limit', 10) == $size ? 'selected' : '' }}>
+                                                    {{ $size }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <span>Entries</span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-6 col-sm-8 col-12">
-                                <div class="row">
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12"></div>
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <input type="search" class="form-control" placeholder="Search here">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-6"></div>
+                                        <div class="col-6">
+                                            <input name="search" id="searchInput" type="search" class="form-control"
+                                                placeholder="Search here" value="{{ request('search') }}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -68,72 +72,50 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td align="center" scope="row">1.</td>
-                                        <td>02-Nov-22</td>
-                                        <td>13SQFT-DC-00042</td>
-                                        <td>02-Nov-22</td>
-                                        <td>13SQFT-PO-000162</td>
-                                        <td>Abdul Tahir</td>
-                                        <td>
-                                            <div class="dropcenter">
-                                                <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm py-0"
-                                                    data-toggle="dropdown" id="dropdownMenuButon" type="button">
-                                                    <i class="bx bx-dots-vertical bx-xs"></i>
-                                                </button>
-                                                <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="{{ url("13sqft/13sqft-delivery-challan-pdf") }}">View DC</a>
-                                                    <a class="dropdown-item" href="javascript:void0">Edit</a>
-                                                    <a class="dropdown-item swal-parameter"
-                                                        href="javascript:void0">Delete</a>
+                                    @forelse($totalDeliveryChallan as $index => $dc)
+                                        <tr>
+                                            <td align="center">{{ $totalDeliveryChallan->firstItem() + $index }}.</td>
+                                            <td>{{ date('d-M-y', strtotime($dc->dc_date)) }}</td>
+                                            <td>{{ $dc->dc_id }}</td>
+                                            <td>{{ date('d-M-y', strtotime($dc->po_date))}}</td>
+                                            <td>{{ $dc->po_id }}</td>
+                                            <td>{{ $dc->client_name }}</td>
+
+                                            <td>
+                                                <div class="dropcenter">
+                                                    <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm py-0"
+                                                        data-toggle="dropdown" id="dropdownMenuButon" type="button">
+                                                        <i class="bx bx-dots-vertical bx-xs"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu tx-13">
+                                                        <a class="dropdown-item"
+                                                            href="{{ url('13sqft/13sqft-delivery-challan-pdf?id=' . $dc->dcsqftdata_id) }}">View
+                                                            DC</a>
+                                                        <a class="dropdown-item"
+                                                            href="{{ url('13sqft/13sqft-delivery-challan-edit?id=' . $dc->dcsqftdata_id) }}">Edit</a>
+                                                        <a class="dropdown-item swal-parameter"
+                                                            href="javascript:void0">Delete</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even">
-                                        <td align="center" scope="row">2.</td>
-                                        <td>05-Jul-22</td>
-                                        <td>13SQFT-DC-00040</td>
-                                        <td>04-Jul-22</td>
-                                        <td>13SQFT-PO-000151</td>
-                                        <td>Abdul Tahir</td>
-                                        <td>
-                                            <div class="dropcenter">
-                                                <button aria-expanded="false" aria-haspopup="true" class="btn btn-sm py-0"
-                                                    data-toggle="dropdown" id="dropdownMenuButon" type="button">
-                                                    <i class="bx bx-dots-vertical bx-xs"></i>
-                                                </button>
-                                                <div class="dropdown-menu tx-13">
-                                                    <a class="dropdown-item" href="{{ url("13sqft/13sqft-delivery-challan-pdf") }}">View DC</a>
-                                                    <a class="dropdown-item" href="javascript:void0">Edit</a>
-                                                    <a class="dropdown-item swal-parameter"
-                                                        href="javascript:void0">Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                            </td>
+
+
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">No data available</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-sm-12 col-md-5">
-                                <div class="dataTables_info my-3" id="example_info" role="status" aria-live="polite">Showing
-                                    1 to 5 of 5 entries</div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+                            <div class="mb-2">
+                                Showing {{ $totalDeliveryChallan->firstItem() }} to {{ $totalDeliveryChallan->lastItem() }} of
+                                {{ $totalDeliveryChallan->total() }} entries
                             </div>
-                            <div class="col-sm-12 col-md-7">
-                                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
-                                    <ul class="pagination justify-content-end">
-                                        <li class="paginate_button page-item previous disabled" id="example_previous"><a
-                                                href="#" class="page-link">Previous</a></li>
-                                        <li class="paginate_button page-item active"><a href="#" class="page-link">1</a>
-                                        </li>
-                                        <li class="paginate_button page-item "><a href="#" class="page-link">2</a></li>
-                                        <li class="paginate_button page-item "><a href="#" class="page-link">3</a></li>
-                                        <li class="paginate_button page-item "><a href="#" class="page-link">4</a></li>
-                                        <li class="paginate_button page-item next" id="example_next"><a href="#"
-                                                class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
+                            <div>
+                                <span>{{ $totalDeliveryChallan->links('pagination::bootstrap-4') }}</span>
                             </div>
                         </div>
                     </div>
@@ -184,4 +166,20 @@
             });
         });
     </script>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        let typingTimer;
+        const delay = 800;
+
+        searchInput.addEventListener('input', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                document.getElementById('filterForm').submit();
+            }, delay);
+        });
+    </script>
+
+
+
+
 @endsection

@@ -96,70 +96,17 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
-                            <div class="card bg-info-gradient">
-                                <div class="card-body list-icons">
-                                    <div class="clearfix">
-                                        <div class="float-right mt-2">
-                                            <span class="text-white">
-                                                <i class="fe fe-dollar-sign tx-30"></i>
-                                            </span> 
-                                        </div>
-                                        <div class="float-left">
-                                            <p class="card-text mb-1 text-white">Total DC Value</p>
-                                            <h5 class="text-white"><i class="bx bx-rupee"></i>1538,535,000</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
         </div>
         <div class="row row-sm mt-4">
             <div class="col-xl-6 col-md-12 col-lg-6">
                 <div class="card">
                     <div class="card-header pb-1">
                         <h3 class="card-title mg-b-5">Activity</h3>
-                        <!-- <p>Sales activities are the tactics that sales people use to achieve their goals and objective</p> -->
                         <p>Tracks all Challans generated, Monitors the number of Work Completion Certificates issued
                             Displays the total count of Purchase Orders created, Shows the cumulative value of all POs</p>
                     </div>
                     <div class="product-timeline card-body pt-2 mt-1">
                         <ul class="timeline-1 mb-0">
-                            <!-- <li class="mt-0 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <i class="ti-list bg-primary-gradient text-white product-icon"></i>
-                                                <span class="font-weight-semibold mb-4 tx-14 ml-3">Total Leads</span>
-                                            </div>
-                                            <span class="font-weight-semibold tx-14 ml-3">177</span>
-                                        </li> -->
-                            <!-- <li class="mt-0 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <i class="ti-file bg-danger-gradient text-white product-icon"></i>
-                                                <span class="font-weight-semibold mb-4 tx-14 ml-3">Total BOQ Submitted</span>
-                                            </div>
-                                            <span class="font-weight-semibold tx-14 ml-3">168</span>
-                                        </li> -->
-                            <!-- <li class="mt-0 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <i class="ti-files bg-success-gradient text-white product-icon"></i>
-                                                <span class="font-weight-semibold mb-4 tx-14 ml-3">BOQ Submitted By - <span class="text-muted">Mukesh</span></span>
-                                            </div>
-                                            <span class="font-weight-semibold tx-14 ml-3">135</span>
-                                        </li>
-                                        <li class="mt-0 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <i class="ti-files bg-warning-gradient text-white product-icon"></i>
-                                                <span class="font-weight-semibold mb-4 tx-14 ml-3">BOQ Submitted By - <span class="text-muted">Ankush</span></span>
-                                            </div>
-                                            <span class="font-weight-semibold tx-14 ml-3">24</span>
-                                        </li>
-                                        <li class="mt-0 d-flex align-items-center justify-content-between">
-                                            <div>
-                                                <i class="ti-files bg-purple-gradient text-white product-icon"></i>
-                                                <span class="font-weight-semibold mb-4 tx-14 ml-3">BOQ Submitted By - <span class="text-muted">Rahul Raj</span></span>
-                                            </div>
-                                            <span class="font-weight-semibold tx-14 ml-3">2</span>
-                                        </li> -->
                             <li class="mt-0 d-flex align-items-center justify-content-between">
                                 <div>
                                     <i class="ti-files bg-success-gradient text-white product-icon"></i>

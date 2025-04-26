@@ -3,9 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class MdcController extends Controller
 {
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+        $limit = $request->input('limit', 10);
+        $limit = ($limit === 'All') ? 100000 : $limit;
+        $query = DB::table('mdcsqft')->orderBy('mdc_id', 'desc');
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('client_name', 'like', "%{$search}%")
+                    ->orWhere('client_po_no', 'like', "%{$search}%")
+                    ->orWhere('project_id', 'like', "%{$search}%");
+            });
+        }
+
+        $totalMDC = $query->paginate($limit)->appends([
+            'search' => $search,
+            'limit' => $limit,
+        ]);
+        return view('13sqft-mdc', compact(
+            'totalMDC'
+        ));
+    }
+
     public function create()
     {
         return view('mdc.create');

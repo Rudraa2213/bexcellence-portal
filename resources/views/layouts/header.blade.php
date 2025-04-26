@@ -36,6 +36,8 @@
     <link href="{{ asset('assets/css/skin-modes.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/common.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/datatables/dataTables.min.css') }}" rel="stylesheet">
+
 </head>
 
 
@@ -100,7 +102,7 @@
                         </div>
                         <div class="dropdown main-header-message right-toggle">
                             <a class="nav-link pr-0" data-toggle="sidebar-right" data-target=".sidebar-right">
-                            <i class="header-icon fe fe-align-justify"></i></a>
+                                <i class="header-icon fe fe-align-justify"></i></a>
                         </div>
                     </div>
                 </div>
