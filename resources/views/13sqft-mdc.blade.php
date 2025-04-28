@@ -9,7 +9,7 @@
                     <h2 class="main-content-title tx-24 mb-2">Material Delivery Challan</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb mg-b-0">
-                            <li class="breadcrumb-item"><a href="{{ url('13sqft-dashboard') }}">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('13sqft/13sqft-dashboard') }}">Dashboard</a></li>
                             <li class="breadcrumb-item active">Material Delivery Challan</li>
                         </ol>
                     </nav>
@@ -87,10 +87,10 @@
                                                         </button>
                                                         <div class="dropdown-menu tx-13">
                                                             <a class="dropdown-item"
-                                                                href="{{ url('13sqft/13sqft-mdc-pdf?id=' . $mdc->mdc_id) }}">View
+                                                                href="{{ url('13sqft/13sqft-mdc-pdf/' . $mdc->mdc_id) }}">View
                                                                 MDC</a>
                                                             <a class="dropdown-item"
-                                                                href="{{ url('13sqft/edit?id=' . $mdc->mdc_id) }}">Edit</a>
+                                                                href="{{ url('13sqft/13sqft-mdc-edit/' . $mdc->mdc_id) }}">Edit</a>
                                                         </div>
                                                     </div>
                                                 </td>

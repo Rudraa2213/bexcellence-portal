@@ -13,54 +13,60 @@
         <div class="row">
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
                 <div class="card bg-primary-gradient">
-                    <div class="card-body list-icons">
-                        <div class="clearfix">
-                            <div class="float-right mt-2">
-                                <span class="text-white">
-                                    <i class="fe fe-file-text tx-30"></i>
-                                </span>
-                            </div>
-                            <div class="float-left">
-                                <p class="card-text mb-1 text-white">Total MDC Raised</p>
-                                <h5 class="text-white">{{ $totalMDC }}</h5>
+                    <a href="{{ url('/13sqft/13sqft-mdc') }}">
+                        <div class="card-body list-icons">
+                            <div class="clearfix">
+                                <div class="float-right mt-2">
+                                    <span class="text-white">
+                                        <i class="fe fe-file-text tx-30"></i>
+                                    </span>
+                                </div>
+                                <div class="float-left">
+                                    <p class="card-text mb-1 text-white">Total MDC Raised</p>
+                                    <h5 class="text-white">{{ $totalMDC }}</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
-                <div class="card bg-danger-gradient">
-                    <div class="card-body list-icons">
-                        <div class="clearfix">
-                            <div class="float-right mt-2">
-                                <span class="text-white">
-                                    <i class="fe fe-layers tx-30"></i>
-                                </span>
-                            </div>
-                            <div class="float-left">
-                                <p class="card-text mb-1 text-white">Total WCC Raised</p>
-                                <h5 class="text-white">{{ $totalWCC }}</h5>
+                <a href="{{ url('/13sqft/13sqft-wcc') }}">
+                    <div class="card bg-danger-gradient">
+                        <div class="card-body list-icons">
+                            <div class="clearfix">
+                                <div class="float-right mt-2">
+                                    <span class="text-white">
+                                        <i class="fe fe-layers tx-30"></i>
+                                    </span>
+                                </div>
+                                <div class="float-left">
+                                    <p class="card-text mb-1 text-white">Total WCC Raised</p>
+                                    <h5 class="text-white">{{ $totalWCC }}</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
-                <div class="card bg-success-gradient">
-                    <div class="card-body list-icons">
-                        <div class="clearfix">
-                            <div class="float-right mt-2">
-                                <span class="text-white">
-                                    <i class="fe fe-file-text tx-30"></i>
-                                </span>
-                            </div>
-                            <div class="float-left">
-                                <p class="card-text mb-1 text-white">Total PO Raised</p>
-                                <h5 class="text-white">{{$totalPO}}</h5>
+                <a href="{{ url('/13sqft/13sqft-po') }}">
+                    <div class="card bg-success-gradient">
+                        <div class="card-body list-icons">
+                            <div class="clearfix">
+                                <div class="float-right mt-2">
+                                    <span class="text-white">
+                                        <i class="fe fe-file-text tx-30"></i>
+                                    </span>
+                                </div>
+                                <div class="float-left">
+                                    <p class="card-text mb-1 text-white">Total PO Raised</p>
+                                    <h5 class="text-white">{{$totalPO}}</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
                 <div class="card bg-warning-gradient">
@@ -80,6 +86,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
+            <a href="{{ url('/13sqft/13sqft-delivery-challan') }}">
                 <div class="card bg-secondary-gradient">
                     <div class="card-body list-icons">
                         <div class="clearfix">
@@ -95,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+            </a>
             </div>
         </div>
         <div class="row row-sm mt-4">

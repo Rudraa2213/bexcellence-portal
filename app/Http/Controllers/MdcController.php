@@ -32,29 +32,64 @@ class MdcController extends Controller
         ));
     }
 
-    public function create()
+
+    public function edit($id)
     {
-        return view('mdc.create');
+        $fetch = DB::table('mdcsqft')->where('mdc_id', $id)->first();
+
+        $mdc_u_id = $fetch->mdc_u_id;
+
+        $mdc_items = DB::table('mdcsqft_items')->where('mdc_u_id', $mdc_u_id)->get();
+
+
+        return view('13sqft-mdc-edit', compact('fetch', 'mdc_items'));
     }
 
-    public function store(Request $request)
+    public function updateItems(Request $request)
     {
-        $request->validate([
-            'client_name' => 'required|string',
-            'date' => 'required|date',
-            'project_id' => 'required|string',
-            'serial_no' => 'required|string',
-            'client_po_no' => 'required|string',
-            'location_code' => 'required|string',
-            'location_name' => 'required|string',
-            'contact_person' => 'required|string',
-            'contact_no' => 'required|string',
-            'site_address' => 'required|string',
-            'item' => 'required|array',
-            'qty' => 'required|array',
-            'unit' => 'required|array',
-        ]);
+        $mdc_id = $request->mdc_id;
+        $project_id = $request->project_id;
+        $serial_no = $request->serial_no;
+        $mdc_u_id = $request->mdc_u_id;
+        $client_po_no = $request->client_po_no;
 
-        return redirect()->back()->with('success', 'MDC added successfully!');
+        $client_name = addslashes($request->client_name);
+        $client_date = addslashes($request->client_date);
+        $location_code = addslashes($request->location_code);
+        $location_name = addslashes($request->location_name);
+        $contact_name = addslashes($request->contact_name);
+        $contact_no = addslashes($request->contact_no);
+        $address = addslashes($request->address);
+        DB::table('mdcsqft')
+            ->where('mdc_id', $mdc_id)
+            ->update([
+                'client_name' => $client_name,
+                'client_date' => $client_date,
+                'project_id' => $project_id,
+                'serial_no' => $serial_no,
+                'client_po_no' => $client_po_no,
+                'location_code' => $location_code,
+                'location_name' => $location_name,
+                'contact_name' => $contact_name,
+                'contact_no' => $contact_no,
+                'address' => $address,
+            ]);
+        foreach ($request->item as $index => $item) {
+            $item = addslashes($request->item[$index]);
+            $qty = addslashes($request->qty[$index]);
+            $unit = addslashes($request->unit[$index]);
+            $mdc_items_id = $request->mdc_items_id[$index];
+            DB::table('mdcsqft_items')
+                ->where('mdc_items_id', $mdc_items_id)
+                ->update([
+                    'item' => $item,
+                    'qty' => $qty,
+                    'unit' => $unit,
+                ]);
+        }
+
+        return redirect()->route('13sqft-mdc-edit', ['id' => $mdc_id])->with('success', 'MDC and items updated successfully!');
     }
+
+
 }
