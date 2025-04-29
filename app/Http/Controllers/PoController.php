@@ -15,12 +15,23 @@ class PoController extends Controller
 
         $query = DB::table('posqftdata')
             ->leftJoin('posqftdataitemdetails', 'posqftdata.posqftdata_id', '=', 'posqftdataitemdetails.posqftdata_id')
-            ->select(
-                'posqftdata.*',
-                DB::raw('SUM(posqftdataitemdetails.total) as total_value')
-            )
-            ->groupBy('posqftdata.posqftdata_id')
-            ->orderBy('posqftdata.posqftdata_id', 'desc');
+            ->selectRaw('
+            posqftdata.posqftdata_id,
+            posqftdata.client_name,
+            posqftdata.po_id,
+            posqftdata.po_date,
+            posqftdata.project_location,
+            posqftdata.material_delivery_address,
+            SUM(posqftdataitemdetails.total) as total_value
+        ')
+            ->groupBy(
+                'posqftdata.posqftdata_id',
+                'posqftdata.client_name',
+                'posqftdata.po_id',
+                'posqftdata.po_date',
+                'posqftdata.project_location',
+                'posqftdata.material_delivery_address'
+            )->orderBy('posqftdata.posqftdata_id', 'desc');
 
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
@@ -39,4 +50,5 @@ class PoController extends Controller
 
         return view('13sqft-po', compact('totalPO'));
     }
+
 }

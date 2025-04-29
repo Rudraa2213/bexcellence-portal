@@ -23,7 +23,12 @@ Route::get('/13sqft/13sqft-mdc', [MdcController::class, 'index'])->name('13sqft-
 Route::get('/13sqft/13sqft-mdc-add', function () {
     return view('13sqft-mdc-add');
 });
+
+Route::post('13sqft-mdc-add-item', [MdcController::class, 'addItems'])->name('13sqft-mdc-add-item');
+
 Route::get('/13sqft/13sqft-mdc-edit/{id}', [MDCController::class, 'edit'])->name('13sqft-mdc-edit');
+
+Route::delete('13sqft/13sqft-mdc-delete/{id}', [MDCController::class, 'delete'])->name('13sqft-mdc-dashboard');
 
 Route::post('13sqft-mdc-updateitems', [MDCController::class, 'updateItems'])->name('13sqft-mdc-updateitems');
 
@@ -33,7 +38,7 @@ Route::get('/13sqft/13sqft-mdc-pdf', function () {
 });
 
 Route::get('/13sqft-mdc/add', [MdcController::class, 'create'])->name('mdc.create');
-Route::post('/mdc/store', [MdcController::class, 'store'])->name('mdc.store');
+
 // WccController
 
 Route::get('13sqft/13sqft-wcc', [WccController::class, 'index'])->name('13sqft-wcc');

@@ -91,6 +91,11 @@
                                                                 MDC</a>
                                                             <a class="dropdown-item"
                                                                 href="{{ url('13sqft/13sqft-mdc-edit/' . $mdc->mdc_id) }}">Edit</a>
+                                                            <a class="dropdown-item swal-parameter" href="#"
+                                                                data-url="{{ url('13sqft/13sqft-mdc-delete/' . $mdc->mdc_id) }}">
+                                                                Delete
+                                                            </a>
+
                                                         </div>
                                                     </div>
                                                 </td>
@@ -121,13 +126,56 @@
             <script>
                 const searchInput = document.getElementById('searchInput');
                 let typingTimer;
-                const delay = 800; // ms
+                const delay = 800;
 
                 searchInput.addEventListener('input', () => {
                     clearTimeout(typingTimer);
                     typingTimer = setTimeout(() => {
                         document.getElementById('filterForm').submit();
                     }, delay);
+                });
+            </script>
+            <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+            <script src="{{ asset('assets/plugins/quill/quill.min.js') }}"></script>
+            <script src="{{ asset('assets/js/form-editor.js') }}"></script>
+            <script>
+                $(document).ready(function () {
+                    $('.swal-parameter').click(function (e) {
+                        e.preventDefault();
+                        const deleteUrl = $(this).data('url');
+
+                        swal({
+                            title: "Are you sure?",
+                            text: "You will not be able to recover this record!",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "btn-danger",
+                            confirmButtonText: "Yes, delete it!",
+                            cancelButtonText: "No, cancel!",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: deleteUrl,
+                                        type: 'DELETE',
+                                        data: {
+                                            _token: '{{ csrf_token() }}'
+                                        },
+                                        success: function (result) {
+                                            swal("Deleted!", "Your record has been deleted.", "success");
+                                            window.location.reload();
+                                        },
+                                        error: function () {
+                                            swal("Error", "There was an error deleting the record.", "error");
+                                        }
+                                    });
+                                } else {
+                                    swal("Cancelled", "Your record is safe :)", "error");
+                                }
+                            });
+                    });
                 });
             </script>
         </div>

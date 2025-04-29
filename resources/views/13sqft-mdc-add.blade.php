@@ -19,7 +19,7 @@
 
     <div class="row row-sm">
         <div class="col-xl-12">
-            <form action="{{ route('mdc.store') }}" method="POST">
+            <form action="{{ route('13sqft-mdc-add-item') }}" method="POST">
                 @csrf
                 <div class="card">
                     <div class="card-header">
@@ -36,19 +36,19 @@
                         <div class="row">
                             @foreach ([
                                 'Client Name' => 'client_name',
-                                'Date' => 'date',
+                                'Date' => 'client_date',
                                 'Project ID' => 'project_id',
                                 'Serial No.' => 'serial_no',
                                 'Client PO No.' => 'client_po_no',
                                 'Location Code' => 'location_code',
                                 'Location Name' => 'location_name',
-                                'Contact Person' => 'contact_person',
+                                'Contact Person' => 'contact_name',
                                 'Contact No.' => 'contact_no',
-                                'Site Address' => 'site_address',
+                                'Site Address' => 'address',
                             ] as $label => $name)
                                 <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mt-3 {{ $name == 'site_address' ? 'col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12' : '' }}">
                                     <label>{{ $label }} <span class="text-danger">*</span></label>
-                                    <input type="text" name="{{ $name }}" class="form-control {{ $name === 'date' ? 'fc-datepicker' : '' }}" required>
+                                    <input type="text" name="{{ $name }}" class="form-control {{ $name === 'client_date' ? 'fc-datepicker' : '' }}" required>
                                 </div>
                             @endforeach
                         </div>
