@@ -13,8 +13,8 @@ class MdcController extends Controller
         $search = $request->input('search');
         $limit = $request->input('limit', 10);
         $limit = ($limit === 'All') ? 100000 : $limit;
-        $query = DB::table('mdcsqft')->orderBy('mdc_id', 'desc');
 
+        $query = DB::table('mdcsqft')->orderBy('mdc_id', 'desc');
         if (!empty($search)) {
             $query->where(function ($q) use ($search) {
                 $q->where('client_name', 'like', "%{$search}%")
@@ -27,9 +27,13 @@ class MdcController extends Controller
             'search' => $search,
             'limit' => $limit,
         ]);
-        return view('13sqft-mdc', compact(
-            'totalMDC'
-        ));
+
+
+        if ($request->ajax()) {
+            return view('partials.mdc-table', compact('totalMDC'))->render();
+        }
+
+        return view('13sqft-mdc', compact('totalMDC'));
     }
 
 
